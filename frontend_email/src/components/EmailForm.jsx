@@ -5,21 +5,19 @@ const EmailForm = () => {
   const [email, setEmail] = useState({ to: "", subject: "", body: "" });
   const [message, setMessage] = useState("");
 
-  const sendEmail = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post("http://127.0.0.1:5000/send-email", email, {
-        headers: { "Content-Type": "application/json" },
-      });
-      console.log("✅ Email sent:", res.data);
-      setMessage(res.data.message || "Email sent successfully!");
-    } catch (error) {
-      console.error("❌ Error:", error.response ? error.response.data : error);
-      setMessage(
-        error.response?.data?.error || "Error sending email. Check the backend logs."
-      );
-    }
-  };
+const sendEmail = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await axios.post(
+      "http://127.0.0.1:5000/send-email", // Ensure this matches your backend URL
+      email,
+      { headers: { "Content-Type": "application/json" } }
+    );
+    setMessage(res.data.message || "Email sent successfully!");
+  } catch (error) {
+    setMessage(error.response?.data?.error || "Error sending email. Check the backend logs.");
+  }
+};
 
   return (
     <div>
