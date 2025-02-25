@@ -9,7 +9,7 @@ const sendEmail = async (e) => {
   e.preventDefault();
   try {
     const res = await axios.post(
-      "http://127.0.0.1:5000/send-email", // Ensure this matches your backend URL
+      "http://127.0.0.1:5000/send-email",
       email,
       { headers: { "Content-Type": "application/json" } }
     );
